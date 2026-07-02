@@ -1,9 +1,17 @@
 import asyncio
+import subprocess
+import sys
 import xml.etree.ElementTree as ET
 from playwright.async_api import async_playwright
 from utils.helpers import normalize_url, is_same_domain, is_valid_url
 from utils.logger import logger
 from core.parser import extract_metadata_from_html
+
+# Ensure Playwright headless chromium browser is installed on server boot
+try:
+    subprocess.run([sys.executable, "-m", "playwright", "install", "chromium"], check=False)
+except Exception:
+    pass
 
 HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; MetaTextBot/2.0)"}
 
