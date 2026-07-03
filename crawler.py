@@ -44,7 +44,7 @@ def _powershell_get(url, timeout=20):
     Returns (html, status_code) or ("", 0) on failure.
     """
     import os, tempfile
-    tmp_file = os.path.join(tempfile.gettempdir(), f"metatext_fetch_{abs(hash(url))}.txt")
+    tmp_file = os.path.join(tempfile.gettempdir(), f"metadatascanner_fetch_{abs(hash(url))}.txt")
     try:
         ps_script = (
             f"$ProgressPreference='SilentlyContinue'; "

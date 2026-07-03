@@ -6,11 +6,11 @@ importlib.reload(crawler)
 from crawler import crawl_site
 
 st.set_page_config(
-    page_title="Meta Text (MT)",
+    page_title="Meta Data Scanner (MDS)",
     layout="wide"
 )
 
-st.title("🟢 Meta Text (MT)")
+st.title("🟢 Meta Data Scanner (MDS)")
 st.subheader("Website Meta Title & Description Extractor")
 
 url = st.text_input(
@@ -44,7 +44,7 @@ if st.button("🚀 Scan Website"):
 
         st.dataframe(df, use_container_width=True)
 
-        file_name = "Meta_Report.xlsx"
+        file_name = "Metadata_Report.xlsx"
 
         df.to_excel(file_name, index=False)
 
