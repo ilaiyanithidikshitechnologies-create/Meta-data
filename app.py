@@ -1,5 +1,8 @@
 import streamlit as st
 import pandas as pd
+import importlib
+import crawler
+importlib.reload(crawler)
 from crawler import crawl_site
 
 st.set_page_config(
@@ -17,9 +20,17 @@ url = st.text_input(
 
 if st.button("🚀 Scan Website"):
 
-    with st.spinner("Scanning Website..."):
+    progress_bar = st.progress(0, text="⏳ Initializing scan...")
 
-        data = crawl_site(url)
+    def update_progress(pct, text):
+        try:
+            progress_bar.progress(min(max(int(pct), 0), 100), text=f"⏳ {text}")
+        except Exception:
+            pass
+
+    data = crawl_site(url, progress_callback=update_progress)
+
+    progress_bar.progress(100, text="✅ Scan Complete!")
 
     if len(data) == 0:
 
